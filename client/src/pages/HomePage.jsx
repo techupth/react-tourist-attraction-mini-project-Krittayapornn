@@ -14,15 +14,17 @@ function HomePage() {
     const result = await axios.get(
       `http://localhost:4001/trips?keywords=${messageInput}`
     );
-    console.log(result);
     setProduct(result.data.data);
+  };
+
+  const handleTagClick = (tag) => {
+    setMessageInput(tag);
   };
 
   useEffect(() => {
     getDataSearch();
   }, [messageInput]);
 
-  //function to limit text length
   const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
       return text.substring(0, maxLength) + "...";
@@ -73,7 +75,11 @@ function HomePage() {
                     <div className="product-tags1">
                       {item.tags.map((tag, i) => {
                         return i < 4 ? (
-                          <div>
+                          <div
+                            key={i}
+                            className={"click-tag1"}
+                            onClick={() => handleTagClick(tag)}
+                          >
                             <u>{tag}</u>
                           </div>
                         ) : null;
@@ -84,7 +90,11 @@ function HomePage() {
                       และ
                       {item.tags.map((tag, i) => {
                         return i < 1 ? (
-                          <div>
+                          <div
+                            key={i}
+                            className={"click-ta2g"}
+                            onClick={() => handleTagClick(tag)}
+                          >
                             <u>{tag}</u>
                           </div>
                         ) : null;
@@ -95,6 +105,15 @@ function HomePage() {
                     {item.photos.map((photo, i) => {
                       return i > 0 ? <img src={photo}></img> : null;
                     })}
+                    <button
+                      className="button-link"
+                      onClick={() => {
+                        navigator.clipboard.writeText(item.url);
+                        alert("Link copied to clipboard!");
+                      }}
+                    >
+                      Copy
+                    </button>
                   </div>
                 </div>
               </div>
