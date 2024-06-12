@@ -18,8 +18,7 @@ function HomePage() {
   };
 
   const handleTagClick = (tag) => {
-    setMessageInput(tag);
-  };
+    setMessageInput((sumText) => (sumText ? `${sumText} ${tag}` : tag))}
 
   useEffect(() => {
     getDataSearch();
@@ -37,15 +36,15 @@ function HomePage() {
       <div className="app-overall">
         <h1 className="header">เที่ยวไหนดี</h1>
         <div className="product-search">
-          <div>ค้นหาที่เที่ยว</div>
           <div className="message-input">
+            <div>ค้นหาที่เที่ยว</div> <br />
             <label>
               <input
                 className="input"
                 id="message-text"
                 name="message-text"
                 type="text"
-                placeholder="หาที่เที่ยวแล้วไปกัน"
+                placeholder="...หาที่เที่ยวแล้วไปกัน..."
                 value={messageInput}
                 onChange={handleSearch}
               />
