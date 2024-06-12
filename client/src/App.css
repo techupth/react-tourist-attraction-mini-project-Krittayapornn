@@ -39,6 +39,7 @@
 }
 .product-detail{
     padding-left: 15px;
+    padding-top: 10px;
 }
 .detail-header {
     font-size: 17px;
@@ -52,7 +53,6 @@ p {
     font-size: 10px;
     font-weight: bold;
     color: rgb(46, 142, 206);
-    padding-bottom: 5px;
 }
 .product-category {
     font-size: 10px;
@@ -60,6 +60,7 @@ p {
     color: grey;
     display: flex;
     gap: 5px;
+    padding-top: 5px;
 }
 .product-tags1 {
     font-size: 10px;
@@ -73,20 +74,21 @@ p {
     display: flex;
     gap: 5px;
 }
-.product-preview {
+.photo-preview {
     display: flex;
     flex-direction: row;
     gap: 15px;
     padding: 10px;
-    width: 55px;
-    height: 50px;
-    border-radius: 5px;
-   
+    
 }
 .img-show{
-    width: 200px;
-    height: 170px;
+    width: 220px;
+    height: 160px;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 30px;
 }
-
+img{
+    border-radius: 5px;
+    width: 55px;
+    height: 55px;
+}

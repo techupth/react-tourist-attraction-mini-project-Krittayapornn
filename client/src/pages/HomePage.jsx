@@ -22,6 +22,14 @@ function HomePage() {
     getDataSearch();
   }, [messageInput]);
 
+  //function to limit text length
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + "...";
+    }
+    return text;
+  };
+
   return (
     <div>
       <div className="app-overall">
@@ -31,7 +39,7 @@ function HomePage() {
           <div className="message-input">
             <label>
               <input
-              className="input"
+                className="input"
                 id="message-text"
                 name="message-text"
                 type="text"
@@ -48,31 +56,44 @@ function HomePage() {
             return (
               <div className="product-result" key={index}>
                 <div className="product-picture">
-                {item.photos.map((photo, i)=>{
-                        return(i < 1 ? <img className="img-show" src={photo}></img> : null)
-                    })}
-                  
+                  {item.photos.map((photo, i) => {
+                    return i < 1 ? (
+                      <img className="img-show" src={photo}></img>
+                    ) : null;
+                  })}
                 </div>
                 <div className="product-detail">
                   <div className="detail-header">{item.title}</div>
-                  <p>{item.description}</p>
-                  <a className="detail-next" href={item.url} target="_blank"><u>อ่านต่อ</u></a>
+                  <p>{truncateText(item.description, 100)}</p>
+                  <a className="detail-next" href={item.url} target="_blank">
+                    <u>อ่านต่อ</u>
+                  </a>
                   <div className="product-category">
                     <div>หมวด</div>
                     <div className="product-tags1">
                       {item.tags.map((tag, i) => {
-                        return i < 4 ? <div><u>{tag}</u></div> : null;
+                        return i < 4 ? (
+                          <div>
+                            <u>{tag}</u>
+                          </div>
+                        ) : null;
                       })}
                     </div>
-                    <div className="product-tags2"> และ 
+                    <div className="product-tags2">
+                      {" "}
+                      และ
                       {item.tags.map((tag, i) => {
-                        return i < 1 ? <div><u>{tag}</u></div> : null;
+                        return i < 1 ? (
+                          <div>
+                            <u>{tag}</u>
+                          </div>
+                        ) : null;
                       })}
                     </div>
                   </div>
-                  <div className="product-preview">
-                    {item.photos.map((photo, i)=>{
-                        return(i < 3 ? <img src={photo}></img> : null)
+                  <div className="photo-preview">
+                    {item.photos.map((photo, i) => {
+                      return i > 0 ? <img src={photo}></img> : null;
                     })}
                   </div>
                 </div>
